@@ -6,7 +6,7 @@ This test task make for Cyber Vision
 <br />
 <code>cd reactTest/</code>
 <br />
-<code>npm init</code>
+<code>npm i</code>
 <br />
 <code>npm start</code>
 # Project starts at 8080 port

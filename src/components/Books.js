@@ -17,7 +17,7 @@ export default class Books extends Component {
                                     <p>Автора</p>
                                     {
                                         book.authors.map((author)=>{
-                                            return <Link to={`/authors/${author.author_id}`}>{author.author}</Link>
+                                            return <Link key={`author_id_${author.id}`} to={`/authors/${author.author_id}`}>{author.author}</Link>
                                         })
                                     }
                                 </div>

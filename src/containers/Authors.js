@@ -27,9 +27,11 @@ class Authors extends Component {
                                     <DropdownButton bsStyle="default" title="Список действий" noCaret id="dropdown-no-caret">
                                         <MenuItem eventKey="1"><Link  to={`/authors/${author.author_id}`} >На страницу автора</Link></MenuItem>
                                         <MenuItem divider />
-                                        <MenuItem eventKey="2">Another action</MenuItem>
-                                        <MenuItem eventKey="3">Something else here</MenuItem>
-                                        <MenuItem eventKey="4">Separated link</MenuItem>
+                                        {
+                                            author.books.map((book)=>{
+                                              return <MenuItem eventKey={`book_${book.id}`}><Link  to={`/books/${book.id}`} >{book.name}</Link></MenuItem>
+                                            })
+                                        }
                                     </DropdownButton>
                                 </ButtonToolbar>
                             </div>

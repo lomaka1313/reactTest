@@ -7,43 +7,55 @@ import API from '../actions/API'
 require('jquery')
 
 class Author extends Component {
-    constructor () {
+    constructor() {
         super();
         this.state = {
             author: {}
         };
     }
-    render() {
-        const author = this.state.author
-        return  (
-            <div className="col-md-12">
-                <div className="col-md-6">
-                    <h1>{author.name}</h1>
-                    <p><Link to={`/authors/${author.author_id}`}>{author.author}</Link></p>
-                </div>
-            </div>
 
-        )
+    render() {
+        const {author} = this.state
+        if (author.name) {
+            return (
+                <div className="col-md-12">
+                    <div className="col-md-6">
+                        <h1>{author.name}</h1>
+
+                        <h3>Книги автора</h3>
+                        {
+                            author.books.map((book)=> {
+                                return <p key={`book_id_${book.id}`}><Link to={`/books/${book.id}`}>{book.name}</Link>
+                                </p>
+                            })
+                        }
+                    </div>
+                </div>
+
+            )
+        }
+        else {
+            return (<div></div>)
+        }
     }
+
     componentDidMount() {
         const {id} = this.props.routeParams
-        API.get.author(id,(response)=> {
-            this.setState({author:response})
+        API.get.author(id, (response)=> {
+            this.setState({author: response})
         })
     }
 }
 
 function mapStateToProps(state) {
     return {
-        author:state
+        author: state
     }
 }
 
 
 function mapDispatchToProps(dispatch) {
-    return {
-
-    }
+    return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Author)
