@@ -7,15 +7,16 @@ require('jquery')
 class App extends Component {
 
     fetch() {
-
-        API.get.books((response)=> {
-            console.log(response)
-            return response
-        })
     }
 
     render() {
         return <div>Home!</div>
+    }
+    componentDidMount() {
+        API.get.books((response)=> {
+            console.log(response)
+            return response
+        })
     }
 }
 

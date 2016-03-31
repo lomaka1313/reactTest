@@ -4,15 +4,15 @@ const fs = require('fs');
 
 class MainModel{
     constructor(){
-        this.json = fs.readFileSync('./server_api/books.json')
+        this.json = fs.readFileSync('./server_api/books.json','utf-8')
     }
 
-    get getAllAuthors(){
+    getAllAuthors(){
         return this.json
     }
 
-    get getAllBooks(){
-        return this.json
+    getAllBooks(){
+        return JSON.parse(this.json)
     }
 }
 
