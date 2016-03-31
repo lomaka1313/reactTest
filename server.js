@@ -1,23 +1,69 @@
-var webpack = require('webpack')
-var webpackDevMiddleware = require('webpack-dev-middleware')
-var webpackHotMiddleware = require('webpack-hot-middleware')
-var config = require('./webpack.config')
+/*eslint-disable no-console */
+import express from 'express'
+import serialize from 'serialize-javascript'
 
-var app = new (require('express'))()
-var port = 8000
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackConfig from './webpack.config'
 
-var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
+import React from 'react'
+import { renderToString } from 'react-dom/server'
+import { Provider } from 'react-redux'
+import { createMemoryHistory, match, RouterContext } from 'react-router'
+import { syncHistoryWithStore } from './src'
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname + '/index.html')
+import { configureStore } from './src/store/store'
+import routes from './routes'
+
+const app = express()
+const api = require('./server_api/controllers/MainController');
+
+var apiRouter = express.Router();
+app.use('/api/', apiRouter);
+new api(apiRouter);
+
+app.use(webpackDevMiddleware(webpack(webpackConfig), {
+  publicPath: '/__build__/',
+  stats: {
+    colors: true
+  }
+}))
+
+const HTML = ({ content, store }) => (
+  <html>
+    <head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    </head>
+    <body>
+      <div id="root" dangerouslySetInnerHTML={{ __html: content }}/>
+      <script dangerouslySetInnerHTML={{ __html: `window.__initialState__=${serialize(store.getState())};` }}/>
+      <script src="/__build__/bundle.js"/>
+    </body>
+  </html>
+)
+
+app.use(function (req, res) {
+  const memoryHistory = createMemoryHistory(req.url)
+  const store = configureStore(memoryHistory)
+  const history = syncHistoryWithStore(memoryHistory, store)
+
+  match({ history, routes, location: req.url }, (error, redirectLocation, renderProps) => {
+    if (error) {
+      res.status(500).send(error.message)
+    } else if (redirectLocation) {
+      res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+    } else if (renderProps) {
+      const content = renderToString(
+        <Provider store={store}>
+          <RouterContext {...renderProps}/>
+        </Provider>
+      )
+
+      res.send('<!doctype html>\n' + renderToString(<HTML content={content} store={store}/>))
+    }
+  })
 })
 
-app.listen(port, function(error) {
-    if (error) {
-        console.error(error)
-    } else {
-        console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
-    }
+app.listen(8080, function () {
+  console.log('Server listening on http://localhost:8080, Ctrl+C to stop')
 })

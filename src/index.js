@@ -1,23 +1,10 @@
-import 'babel-polyfill'
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { Router, Route, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import App from './containers/App'
-import './styles/app.css'
-import configureStore from './store/configureStore'
+import 'jquery'
+export syncHistoryWithStore from './sync'
+export { LOCATION_CHANGE, routerReducer } from './reducers/reducer'
 
-const store = configureStore();
-
-const history = syncHistoryWithStore(browserHistory, store)
-
-render(
-    <Provider store={store}>
-
-        <Router history={history}>
-            <Route path="/" component={App}/>
-        </Router>
-    </Provider>,
-    document.getElementById('root')
-)
+export {
+  CALL_HISTORY_METHOD,
+  push, replace, go, goBack, goForward,
+  routerActions
+} from './actions/actions'
+export routerMiddleware from './middleware'

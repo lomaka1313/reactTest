@@ -1,3 +1,8 @@
 {
-  "presets": ["es2015", "stage-0", "react"] //поддержка ES2015, ES7 и JSX
+  "presets": ["es2015", "react", "stage-1"],
+  "plugins": [
+    ["babel-plugin-module-alias", [
+      { "src": "./src", "expose": "react-router-redux" }
+    ]]
+  ]
 }
