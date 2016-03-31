@@ -1,7 +1,6 @@
 {
-  "name": "rrr-server-example",
-  "version": "0.0.0",
-  "repository": "reactjs/react-router-redux",
+  "name": "cyber-vision-test",
+  "version": "0.0.1",
   "license": "MIT",
   "dependencies": {
     "amd-define-factory-patcher-loader": "1.0.0",
