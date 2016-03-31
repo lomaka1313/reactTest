@@ -1,4 +1,3 @@
-import 'jquery'
 export syncHistoryWithStore from './sync'
 export { LOCATION_CHANGE, routerReducer } from './reducers/reducer'
 

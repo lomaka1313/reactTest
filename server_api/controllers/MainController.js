@@ -22,15 +22,18 @@ class TokenRouter{
     }
 
     getAllAuthors(req,res){
-        model.getAllAuthors()
+        let books = model.getAllAuthors()
+        res.json(books)
     }
 
     getOneBook(req,res){
-
+        let book = model.getOneBook(req.params.id);
+        res.json(book)
     }
 
     getOneAuthor(req,res){
-
+        let author = model.getOneAuthor(req.params.id);
+        res.json(author)
     }
 
 

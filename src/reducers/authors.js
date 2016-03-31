@@ -1,7 +1,8 @@
+
 const initialState = {
-    name: 'Аноним'
+    authors: []
 }
 
-export default function user(state = initialState) {
+export default function authors(state = initialState) {
     return state
 }

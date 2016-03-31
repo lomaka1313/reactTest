@@ -32,7 +32,11 @@ app.use(webpackDevMiddleware(webpack(webpackConfig), {
 const HTML = ({ content, store }) => (
   <html>
     <head>
+      <title>Cyber Vision Test</title>
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css" />
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
     </head>
     <body>
       <div id="root" dangerouslySetInnerHTML={{ __html: content }}/>

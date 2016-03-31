@@ -12,7 +12,6 @@ export function configureStore(history, initialState) {
 
   const store = createStore(
     reducer,
-    initialState,
     compose(
       applyMiddleware(
         routerMiddleware(history)

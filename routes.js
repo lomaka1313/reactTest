@@ -1,6 +1,10 @@
 import React from 'react'
 import { Route, IndexRoute, Link } from 'react-router'
 import Home from './src/containers/Home'
+import Books from './src/containers/Books'
+import Authors from './src/containers/Authors'
+import Author from './src/containers/Author'
+import Book from './src/containers/Book'
 
 const App = ({ children }) => (
   <div>
@@ -16,20 +20,14 @@ const App = ({ children }) => (
     {children}
   </div>
 )
-const books = () => (<div>Books!</div>)
-const FooID = (data) => {
-    const {id} = data.routeParams
-    console.log(id)
-    return <div>Foo {id}!</div>
-}
-const Bar = () => (<div>Bar!</div>)
 
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home}/>
-    <Route path="books" component={books}/>
-    <Route path="books/:id" component={FooID}/>
-    <Route path="authors" component={Bar}/>
+    <Route path="books" component={Books}/>
+    <Route path="books/:id" component={Book}/>
+    <Route path="authors" component={Authors}/>
+    <Route path="authors/:id" component={Author}/>
   </Route>
 )
 

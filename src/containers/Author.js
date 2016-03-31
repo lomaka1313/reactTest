@@ -3,42 +3,39 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import API from '../actions/API'
-import Books from '../components/Books'
-import Authors from '../components/Authors'
 
 require('jquery')
 
-class App extends Component {
+class Author extends Component {
     constructor () {
         super();
         this.state = {
-            books: [],
-            authors:[]
+            author: {}
         };
     }
     render() {
+        const author = this.state.author
         return  (
             <div className="col-md-12">
-                <Books books={this.state.books}/>
-                <Authors authors={this.state.authors}/>
+                <div className="col-md-6">
+                    <h1>{author.name}</h1>
+                    <p><Link to={`/authors/${author.author_id}`}>{author.author}</Link></p>
+                </div>
             </div>
 
         )
     }
     componentDidMount() {
-        API.get.books((response)=> {
-            this.setState({books:response})
-        })
-        API.get.authors((response)=> {
-            this.setState({authors:response})
+        const {id} = this.props.routeParams
+        API.get.author(id,(response)=> {
+            this.setState({author:response})
         })
     }
 }
 
 function mapStateToProps(state) {
     return {
-        books:state,
-        authors:state
+        author:state
     }
 }
 
@@ -49,4 +46,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(Author)

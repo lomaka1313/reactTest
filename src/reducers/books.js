@@ -1,18 +1,11 @@
-import { SET_YEAR } from '../constants/Page'
 
 const initialState = {
-    year: 2016,
-    photos: []
+    books: []
 }
 
-export default function page(state = initialState, action) {
+export default function books(state = initialState) {
 
-    switch (action.type) {
-        case SET_YEAR:          //не забудьте обновить строку на константу
-            return { ...state, year: action.payload }
+    return state;
 
-        default:
-            return state;
-    }
 
 }

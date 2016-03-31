@@ -7,6 +7,8 @@ export const LOCATION_CHANGE = '@@router/LOCATION_CHANGE'
 const initialState = {
   locationBeforeTransitions: null
 }
+import books from './books'
+import authors from './authors'
 
 /**
  * This reducer will update the state with the most recent location history
@@ -16,7 +18,7 @@ const initialState = {
  */
 export function routerReducer(state = initialState, { type, payload }) {
   if (type === LOCATION_CHANGE) {
-    return { ...state, locationBeforeTransitions: payload }
+    return { ...state, locationBeforeTransitions: payload,books,authors }
   }
 
   return state

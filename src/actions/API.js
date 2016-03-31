@@ -1,22 +1,34 @@
-const $ = require('jquery')
-console.log($);
+const $ = require('jquery');
+
 let XHR = {
     get: {
         /**
-         * @param {JSON} data
          * @param {function} callback
          */
         books: function(callback) {
             XHR.request('GET', '/api/books', callback);
         },
+        /**
+         * @param {string} book_id
+         * @param {function} callback
+         */
+        book: function(id,callback) {
+            XHR.request('GET', `/api/books/${id}`, callback);
+        },
 
         /**
-         * @param {JSON} data
          * @param {function} callback
          */
         authors: function(callback) {
-            XHR.request('GET', 'authors', callback);
-        }
+            XHR.request('GET', '/api/authors', callback);
+        },
+        /**
+         * @param {string} author_id
+         * @param {function} callback
+         */
+        author: function(id,callback) {
+            XHR.request('GET', `/api/authors/${id}`, callback);
+        },
     },
 
     /**

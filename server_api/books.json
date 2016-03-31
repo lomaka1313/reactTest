@@ -3,30 +3,35 @@
     "id" : "1",
     "name" : "The Lightning Thief",
     "author" : "Rick Riordan",
-    "genre" : "fantasy"
+    "author_id" : "1",
+    "genre" : "action"
   },
   {
     "id" : "2",
     "name" : "The Lightning Thief",
     "author" : "Rick Riordan",
-    "genre" : "fantasy"
+    "author_id" : "1",
+    "genre" : "drama"
   },
   {
     "id" : "3",
-    "name" : "The Lightning Thief",
-    "author" : "Rick Riordan",
-    "genre" : "fantasy"
+    "name" : "Fire",
+    "author" : "John Doe",
+    "author_id" : "2",
+    "genre" : "science fiction"
   },
   {
     "id" : "4",
-    "name" : "The Lightning Thief",
-    "author" : "Rick Riordan",
+    "name" : "Войны начинают неудачники",
+    "author" : "Вадим Панов",
+    "author_id" : "3",
     "genre" : "fantasy"
   },
   {
     "id" : "5",
-    "name" : "The Lightning Thief",
-    "author" : "Rick Riordan",
+    "name" : "Game of Thrones",
+    "author" : "George Raymond Richard Martin",
+    "author_id" : "6",
     "genre" : "fantasy"
   }
 ]
