@@ -11,7 +11,7 @@ export default class Authors extends Component {
                 {
                     authors.map(function(author) {
                         return (
-                            <div key={`authors_id_${author.author_id}`}>
+                            <div key={`authors_list_id_${author.author_id}`}>
                                 <p>Автор</p>
                                 <Link to={`/authors/${author.author_id}`}>{author.author}</Link>
                             </div>

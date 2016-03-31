@@ -69,6 +69,7 @@ class MainModel{
                 arr.push({
                     name: el.name,
                     id: el.id,
+                    genre:el.genre,
                     authors: [
                         {
                             author: el.author,

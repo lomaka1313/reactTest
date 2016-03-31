@@ -10,13 +10,14 @@ class Author extends Component {
     constructor() {
         super();
         this.state = {
-            author: {}
+            author: {},
+            books:[]
         };
     }
 
     render() {
-        const {author} = this.state
-        if (author.name) {
+        const {author,books} = this.state
+        if (books.length>0) {
             return (
                 <div className="col-md-12">
                     <div className="col-md-6">
@@ -24,9 +25,8 @@ class Author extends Component {
 
                         <h3>Книги автора</h3>
                         {
-                            author.books.map((book)=> {
-                                return <p key={`book_id_${book.id}`}><Link to={`/books/${book.id}`}>{book.name}</Link>
-                                </p>
+                            books.map((book)=> {
+                                return <p key={`book_id_${book.id}`}><Link to={`/books/${book.id}`}>{book.name}</Link></p>
                             })
                         }
                     </div>
@@ -42,14 +42,16 @@ class Author extends Component {
     componentDidMount() {
         const {id} = this.props.routeParams
         API.get.author(id, (response)=> {
-            this.setState({author: response})
+            this.setState({author: response.author})
+            this.setState({books:response.books})
         })
     }
 }
 
 function mapStateToProps(state) {
     return {
-        author: state
+        author: state,
+        books:state
     }
 }
 

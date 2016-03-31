@@ -11,13 +11,13 @@ export default class Books extends Component {
                     {
                         books.map(function(book) {
                             return (
-                                <div key={`book_id_${book.id}`}>
+                                <div key={`book_list_id_${book.id}`}>
                                     <p>Название</p>
                                     <Link to={`/books/${book.id}`}>{book.name}</Link>
                                     <p>Автора</p>
                                     {
                                         book.authors.map((author)=>{
-                                            return <Link key={`author_id_${author.id}`} to={`/authors/${author.author_id}`}>{author.author}</Link>
+                                            return <Link key={`author_id_list_${author.id}`} to={`/authors/${author.author_id}`}>{author.author}</Link>
                                         })
                                     }
                                 </div>
