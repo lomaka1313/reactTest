@@ -5,6 +5,7 @@ import Books from './src/containers/Books'
 import Authors from './src/containers/Authors'
 import Author from './src/containers/Author'
 import Book from './src/containers/Book'
+import Genres from './src/containers/Genres'
 
 const App = ({ children }) => (
   <div>
@@ -16,6 +17,8 @@ const App = ({ children }) => (
       <Link to="/books">Books</Link>
       {' '}
       <Link to="/authors">Authors</Link>
+      {' '}
+      <Link to="/genres">Books by genre</Link>
     </header>
     {children}
   </div>
@@ -28,6 +31,7 @@ const routes = (
     <Route path="books/:id" component={Book}/>
     <Route path="authors" component={Authors}/>
     <Route path="authors/:id" component={Author}/>
+    <Route path="genres" component={Genres}/>
   </Route>
 )
 

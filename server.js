@@ -1,4 +1,5 @@
 /*eslint-disable no-console */
+require('node-babel')();
 import express from 'express'
 import serialize from 'serialize-javascript'
 
